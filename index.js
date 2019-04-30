@@ -14,8 +14,9 @@ server.use(helmet());
 
 server.post('/api/zoos', (req, res) => {
 
-  const name = req.body.name;
-  if (!name){
+  const name = req.body;
+
+  if (!req.body.name){
     res.send('Please add a zoo name')
   }else{
     db('zoos')
@@ -31,7 +32,7 @@ server.post('/api/zoos', (req, res) => {
     .catch(err => res.status(500).json(err));
     
   }
- 
+  
 });
 
 server.get('/api/zoos', (req, res) => {
